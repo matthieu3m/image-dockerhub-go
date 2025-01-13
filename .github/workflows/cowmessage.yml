@@ -2,6 +2,7 @@
 
 name: Workflows for cowmessage exo
 
+
 on:
   push:
     branches:
@@ -31,6 +32,8 @@ jobs:
   deploy:
     runs-on: go
     needs: build
+    permissions:
+      id-token: write
 
     steps:
 
