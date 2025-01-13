@@ -1,0 +1,40 @@
+---
+
+name: Workflows for cowmessage exo
+
+on:
+  push:
+    branches:
+        - main
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Take Code-Hex/Neo-cowsay/v2 and go run .
+        run: |
+          go get github.com/Code-Hex/Neo-cowsay/v2
+          go run .
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cowmessage
+          path: ./cowmessage.go
+
+  deploy:
+    runs-on: ubunut-latest
+    needs: build
+
+    steps:
+
+      - name: Deploy artifact
+        id: deployment
+        uses: actions/deploy-pages@v4 
+
