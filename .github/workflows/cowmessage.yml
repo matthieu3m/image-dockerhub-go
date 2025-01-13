@@ -41,7 +41,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Go
-        run: sudo snap install go
+        run: sudo snap install go --classic
 
       - name: Download artifact
         id: deployment
