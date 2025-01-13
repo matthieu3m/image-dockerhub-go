@@ -48,5 +48,5 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: cowmessage
-          path: ./
+          path: .
 
