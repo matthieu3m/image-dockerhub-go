@@ -12,8 +12,8 @@
       tags:
         - 'v*'
     # Ajout du cron    
-    schedule:
-      - cron: '*/5 * * * *'
+    #schedule:
+    #  - cron: '*/5 * * * *'
 
     # Permet de déclencher le workflow manuellement  
     workflow_dispatch:
