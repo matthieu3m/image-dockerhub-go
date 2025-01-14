@@ -53,7 +53,7 @@
             file: ./Dockerfile
             push: true
             tags: ${{ steps.meta.outputs.tags }} #
-            platforms: linux/arm64,linux/amd64 # avec l'option platforms nous ajoutons des options pour les differents Processeurs
+            platforms: linux/arm64,linux/amd64 # avec l'option platforms nous ajoutons des options pour les differents Proce
             labels: ${{ steps.meta.outputs.labels }}
   
         - name: Generate artifact attestation

