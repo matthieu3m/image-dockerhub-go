@@ -65,8 +65,8 @@
             push: true
             tags: ${{ steps.meta.outputs.tags }} #
             platforms: linux/arm64,linux/amd64,linux/arm # avec l'option platforms et la matrix defini au dessus nous ajoutons des options pour les differents Proce ancienne version: linux/arm64,linux/amd64
-            build-args: | # Grace à build-args je peux faire matcher GOARCH de mon Dockerfile avec les valeurs de la matri
-              GOARCH=${{ matrix.goarch }}  
+            #build-args: | # Grace à build-args je peux faire matcher GOARCH de mon Dockerfile avec les valeurs de la matri
+            #  GOARCH=#$#{{ matrix.goarch }}  
             
             labels: ${{ steps.meta.outputs.labels }}
   
