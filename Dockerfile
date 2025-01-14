@@ -6,14 +6,14 @@ RUN apt update -y && \
 
 FROM golang:1.18-buster as builder
 
-ENV GOARCH=arm64
-ENV GOOS=linux
+ARG GOARCH
+ARG GOOS=linux
 
 WORKDIR /app
 
 COPY . .
 
-RUN go build -o /usr/local/bin/cowmessage
+RUN GOARCH=${GOARCH} go build -o /usr/local/bin/cowmessage
 
 FROM base 
 
