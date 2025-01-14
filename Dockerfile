@@ -1,10 +1,10 @@
-FROM ubuntu:22.04 as base
+FROM ubuntu:22.04 AS base
 
 RUN apt update -y && \
     apt install -y libc6 && \
     rm -rf /var/lib/apt/lists/*
 
-FROM golang:1.18-buster as builder
+FROM golang:1.18-buster AS builder
 
 ARG GOARCH
 ARG GOOS=linux
