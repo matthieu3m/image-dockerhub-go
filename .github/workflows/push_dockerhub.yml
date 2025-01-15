@@ -8,9 +8,12 @@
   
   on:
     push:
-      # Déclenche pour tout tag commençant par 'v', comme 'v0.1', 'v1.0', etc... (dans mon cas ca évite que )
+      branches:
+        - dockerhub
+      # Déclenche pour tout tag commençant par 'v', comme 'v0.1', 'v1.0', etc... (dans mon cas ca évite que-
       tags:
         - 'v*'
+
     # Ajout du cron    
     #schedule:
     #  - cron: '*/5 * * * *'
@@ -32,11 +35,17 @@
 
       strategy:
         matrix:
+<<<<<<< HEAD
           goarch: [amd64, arm64, arm] # Ici je viens définir les différente architecture cibles pour la matrix (il y aura donc 3 jobs
+=======
+          goarch: [amd64, arm64, arm] # Ici je viens définir les différente architecture cibles pour la matrix (il y aura donc 3 jobs).
+>>>>>>> dockerhub
    
       steps:
         - name: Checkout
           uses: actions/checkout@v4
+          with:
+            fetch-depth: 1
   
         - name: login to docker Hub
           uses: docker/login-action@v2
@@ -44,7 +53,7 @@
             username: ${{ secrets.DOCKER_USERNAME }}
             password: ${{ secrets.DOCKER_PASSWORD }}
 
-        - name: Set up Docker Buildx # Cette step nous sert à Set Docker Buildx pour charger nos images pour les différent processeurs plus tard dans le job
+        - name: Set up Docker Buildx # Cette step nous sert à Set Docker Buildx pour charger nos images pour les différent processeurs plus tard dans le job.
           run: |
             docker buildx create --use
   
@@ -68,12 +77,10 @@
             
             labels: ${{ steps.meta.outputs.labels }}
   
-        - name: Generate artifact attestation
-          uses: actions/attest-build-provenance@v2
-          with: 
-            subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
-            subject-digest: ${{ steps.push.outputs.digest }}
-            push-to-registry: true
-            github-token: ${{ secrets.GITHUB_TOKEN }}
-            
-  
+        #- name: Generate artifact attestation
+        #  uses: actions/attest-build-provenance@v2
+        #  with: 
+        #    subject-name: $#{{ env.REGISTRY }}/$#{{ env.IMAGE_NAME}}
+        #    subject-digest: $#{{ steps.push.outputs.digest }}
+        #    push-to-registry: true
+        #    github-token: $#{{ secrets.GITHUB_TOKEN }}
