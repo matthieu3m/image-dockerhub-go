@@ -15,8 +15,8 @@
         - 'v*'
 
     # Ajout du cron    
-    #schedule:
-    #  - cron: '*/5 * * * *'
+    schedule:
+      - cron: "0 12 * * *"
 
     # Permet de déclencher le workflow manuellement.
     workflow_dispatch:
@@ -35,11 +35,7 @@
 
       strategy:
         matrix:
-<<<<<<< HEAD
-          goarch: [amd64, arm64, arm] # Ici je viens définir les différente architecture cibles pour la matrix (il y aura donc 3 jobs
-=======
           goarch: [amd64, arm64, arm] # Ici je viens définir les différente architecture cibles pour la matrix (il y aura donc 3 jobs).
->>>>>>> dockerhub
    
       steps:
         - name: Checkout
