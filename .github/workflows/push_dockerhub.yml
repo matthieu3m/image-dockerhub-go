@@ -8,12 +8,7 @@
   
   on:
     push:
-      branches:
-        - dockerhub
-      # Déclenche pour tout tag commençant par 'v', comme 'v0.1', 'v1.0', etc... (dans mon cas ca évite que-
-      tags:
-        - 'v*'
-
+      
     # Ajout du cron    
     schedule:
       - cron: "0 12 * * *"
