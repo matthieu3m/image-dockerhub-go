@@ -7,8 +7,6 @@
   name: published image-dockerhub-go
   
   on:
-    push:
-      
     # Ajout du cron    
     schedule:
       - cron: "0 12 * * *"
