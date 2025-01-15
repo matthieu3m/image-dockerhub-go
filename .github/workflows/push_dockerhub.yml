@@ -15,7 +15,7 @@
     #schedule:
     #  - cron: '*/5 * * * *'
 
-    # Permet de déclencher le workflow manuellement  
+    # Permet de déclencher le workflow manuellement.
     workflow_dispatch:
   
   env:
